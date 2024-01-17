@@ -18,6 +18,22 @@ CREATE TABLE tbl_Autores
 )
 
 CREATE TABLE tbl_Editoras
-(ID_Editora smallint primary key,
+(ID_Editora smallint primary key identity,
  Nome_Editora varchar(50) not null
 )
+
+/* informações sobre a tabela */
+
+sp_help tbl_autores
+
+/* remove uma coluna */ 
+alter table tbl_Livro
+drop column ID_Autor
+
+
+/*add uma coluna*/
+
+alter table tbl_Livro
+add ID_Autor smallint not null
+constraint fk_ID_Autor foreign key (ID_Autor)
+references tbl_autores
