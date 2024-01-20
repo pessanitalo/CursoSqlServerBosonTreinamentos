@@ -58,4 +58,35 @@ insert into tbl_Livro values ('modelagem e desenvolvimento de banco de dados', 9
 select * from tbl_Livro;
 select Nome_Livro from tbl_Livro;
 
+--CONSULTAS SIMPLES COM WHERE
+select * from tbl_Livro where Preco_Livro = 137.49;
+select * from tbl_Livro where ID_Livro = 101;
 
+-- consultas com AND
+select * from tbl_Livro where Preco_Livro > 234.00 and Preco_Livro < 267.00;
+select * from tbl_Livro where ID_Livro > 100 and ID_Livro < 203;
+
+
+--ALIAS
+select Nome_Livro AS Livro from tbl_Livro;
+
+--CONTA A QUANTIDADE DE REGISTROS DA TABELA LIVROS
+select COUNT(*) from tbl_Livro;
+
+--RETORNA O LIVRO MAIS CARO
+select MAX(Preco_Livro) from tbl_Livro;
+
+--RETORNA O LIVRO MAIS BARATO
+select MIN(Preco_Livro) from tbl_Livro;
+
+
+select * from tbl_Livro where Preco_Livro BETWEEN 235.20 AND 266.40
+select * from tbl_Livro where ID_Livro BETWEEN 201 AND 203
+
+--PESQUISAR TODOS OS LIVROS QUE A SEGUNDA LETRA TENHA A LETRA 'A'
+select Nome_Livro from tbl_Livro where Nome_Livro Like '_a%';
+
+select Nome_Livro from tbl_Livro where Nome_Livro Like '_[os]%';
+
+select Nome_Livro from tbl_Livro where Nome_Livro Like '__des%';
+select Nome_Livro from tbl_Livro where Nome_Livro Like '___ica%';
