@@ -1,5 +1,4 @@
 CREATE DATABASE db_biblioteca
-
 USE db_biblioteca;
 
 CREATE TABLE tbl_Livro
@@ -29,7 +28,6 @@ sp_help tbl_autores
 /* remove uma coluna */ 
 alter table tbl_Livro
 drop column ID_Autor
-
 
 /*add uma coluna*/
 
@@ -66,7 +64,6 @@ select * from tbl_Livro where ID_Livro = 101;
 select * from tbl_Livro where Preco_Livro > 234.00 and Preco_Livro < 267.00;
 select * from tbl_Livro where ID_Livro > 100 and ID_Livro < 203;
 
-
 --ALIAS
 select Nome_Livro AS Livro from tbl_Livro;
 
@@ -79,14 +76,31 @@ select MAX(Preco_Livro) from tbl_Livro;
 --RETORNA O LIVRO MAIS BARATO
 select MIN(Preco_Livro) from tbl_Livro;
 
-
 select * from tbl_Livro where Preco_Livro BETWEEN 235.20 AND 266.40
 select * from tbl_Livro where ID_Livro BETWEEN 201 AND 203
 
 --PESQUISAR TODOS OS LIVROS QUE A SEGUNDA LETRA TENHA A LETRA 'A'
 select Nome_Livro from tbl_Livro where Nome_Livro Like '_a%';
-
 select Nome_Livro from tbl_Livro where Nome_Livro Like '_[os]%';
-
 select Nome_Livro from tbl_Livro where Nome_Livro Like '__des%';
 select Nome_Livro from tbl_Livro where Nome_Livro Like '___ica%';
+
+select * from tbl_Livro
+
+--CRIA INDEX 
+create index nome_livro on tbl_Livro (Nome_Livro)
+
+--CRIAR UMA VIEW
+create view LivrosAutores
+as select tbl_Livro.Nome_Livro as Livro, tbl_Autores.Nome_Autor
+as Autor from tbl_Livro
+inner join tbl_Autores
+on tbl_Livro.ID_Autor = tbl_Autores.ID_Autor
+
+--EXECUTA UMA VIEW CRIADA 
+select Livro,Autor
+from LivrosAutores
+
+select Livro,Autor
+from LivrosAutores
+where Livro Like 'j%'
