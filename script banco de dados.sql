@@ -104,3 +104,44 @@ from LivrosAutores
 select Livro,Autor
 from LivrosAutores
 where Livro Like 'j%'
+
+--CRIAR UMA STORED PROCEDURE
+create procedure teste as select 'Teste procedure' as Nome
+
+--executar uma stored procedure
+exec teste
+
+--retorna duas colunas da taebela livro
+create procedure p_LivroValor as
+select Nome_Livro, Preco_Livro from tbl_Livro
+
+--executa a procedure
+exec p_LivroValor
+
+--cria procedure realizando filtro por preço
+create procedure pesquisaPorValor as
+select * from tbl_Livro where Preco_Livro > 234.00 and Preco_Livro < 267.00;
+
+execute pesquisaPorValor
+
+--passando parametro na procedure
+alter procedure p_LivroValor
+(@ID SMALLINT) AS
+select Nome_Livro, Preco_Livro from tbl_Livro where ID_Livro = @ID
+
+--executando a procedure e passando um parametro
+exec p_LivroValor 100
+
+--procedure multiplos parametros
+create procedure _param
+(@par1 as int, @par2 as varchar(20))
+as
+select @par1
+select @par2
+
+-- executar procedure
+exec _param 26, 'laranja'
+
+exec _param @par1 = 14, @par2 = 'laranja'
+
+exec _param @par1 = 35, @par2 = 'preto'
